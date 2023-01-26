@@ -17,8 +17,8 @@ const schema = yup.object({
     .string()
     .required("Phone Number is a required field")
     .matches(/^\d{10}$/, 'Invalid phone number'),
-  password: yup.string().min(6, "Password must be atlest 6 characters"),
-  gender: yup.string().required("Gender is required"),
+  password: yup.string().min(8, "Password must be atleast 8 characters"),
+  gender: yup.string().nullable().required("Gender is required"),
   age: yup.string().required("Age is required"),
   comment: yup.string().required("This field is required")
 })
@@ -33,7 +33,7 @@ function App() {
   const formSubmit = (data) => {
     setFormSubmitted(true);
     console.log(data);
-   
+    reset();
   };
   const resetForm = () => {
     setFormSubmitted(false);
@@ -79,12 +79,13 @@ function App() {
           id="gender"
           label="Gender"
           register={{...register("gender")}}
-          
+          errorMessage={errors.gender?.message}
         />
         
         <Password 
           id="password"
-          type="password"
+          label="Password"
+          
           placeholder="password"
           register={{...register("password")}}
           errorMessage={errors.password?.message}
@@ -96,7 +97,7 @@ function App() {
           register={{...register("comment")}}
           errorMessage={errors.comment?.message}
         />
-        <button type="submit" onClick={formSubmit}>Submit</button>
+        <button type="submit" >Submit</button>
         <button type="button" onClick={resetForm}>Reset</button>
         {formSubmitted && <div>Thank you for submitting the form!</div>}
       </form>

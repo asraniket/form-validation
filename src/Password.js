@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 
-export default function Password({id, label, placeholder, type, register, errorMessage, togglepassword}) {
+export default function Password({id, label, placeholder, type, register, errorMessage}) {
 	const [showPassword, setShowPassword] = useState(false);
-	const [password, setPassword] = useState('');
+	
+	const togglePassword = () => {
+		setShowPassword((showPassword) => !showPassword);
+	  };
 
 	return(
 		<div>
-			<label>Password</label>
+			<label htmlFor={id}>{label}</label>
 			<input
 				type={showPassword ? 'text' : 'password'}
-				value={password}
-				onChange={e => setPassword(e.target.value)}
+				placeholder='Password'
+				{...register}
 			/>
-			<button onClick={() => setShowPassword(!showPassword)}>
-				{showPassword ? 'Hide' : 'Show'} Password
-			</button>
+			
+          <input
+            id="checkbox"
+            type="checkbox"
+            checked={showPassword}
+            onChange={togglePassword}
+          />
+		  <label htmlFor="checkbox">Show password</label>
 			<span className="error-message" >{errorMessage}</span>
     	</div>
 	);
