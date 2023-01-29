@@ -41,10 +41,10 @@ function App() {
   };
 
   return (
-    <div className="Form">
-      <h1>Contact Form</h1>
-      <p>Please fill all the fields given below.</p>
-      <form onSubmit={handleSubmit(formSubmit)}>
+    <div className="mb-4">
+      <h1 className="text-2xl font-medium mb-4 text-center">Contact Form</h1>
+      <p className="text-l font-small mb-4 text-center">Please fill all the fields given below.</p>
+      <form className="mx-auto p-10 bg-white rounded-lg shadow-lg" onSubmit={handleSubmit(formSubmit)}>
         <Input 
           id="name" 
           label="Name" 
@@ -97,8 +97,8 @@ function App() {
           register={{...register("comment")}}
           errorMessage={errors.comment?.message}
         />
-        <button type="submit" >Submit</button>
-        <button type="button" onClick={resetForm}>Reset</button>
+        <button className="bg-indigo-500 hover:bg-indigo-600 text-white p-2 rounded-lg" type="submit" >Submit</button>
+        <button className="bg-indigo-500 hover:bg-indigo-600 text-white p-2 rounded-lg" type="button" onClick={resetForm}>Reset</button>
         {formSubmitted && <div>Thank you for submitting the form!</div>}
       </form>
     </div>
